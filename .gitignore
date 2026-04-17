@@ -1,0 +1,43 @@
+# Kompilerade Java-klasser
+*.class
+
+# Paketfiler
+*.jar
+*.war
+*.ear
+
+# IDE-filer (IntelliJ, Eclipse, VSCode)
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+.vscode/
+
+# Temporära filer
+*~
+*.swp
+*.swo
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+env/
+venv/
+.venv/
+
+# Datafiler (valfritt – inkludera om du vill ha med CSV i repot)
+# *.csv
+
+# Bilder genererade av measure.py (kan ignoreras eller committas)
+*.png
+*.pdf
+
+# macOS
+.DS_Store
+
+# Linux
+.directory
