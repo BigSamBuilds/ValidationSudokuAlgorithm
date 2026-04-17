@@ -91,8 +91,5 @@ Skriptet läser `benchmark_results.csv` och:
 ## Författare
 
 Projektarbete i kursen Utvärdering av programvarusystem, våren 2026.  
-Gruppmedlemmar: [Dina namn här]
 
-## Licens
 
-Detta projekt använder MIT-licensen – se [LICENSE](LICENSE) för detaljer.
