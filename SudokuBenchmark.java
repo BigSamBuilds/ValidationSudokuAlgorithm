@@ -1,7 +1,6 @@
+import SudokuSolverBench.SudokuSolverBench;
 import java.io.*;
 import java.util.*;
-
-import SudokuSolverBench.SudokuSolverBench;
 
 public class SudokuBenchmark {
 
@@ -39,7 +38,9 @@ public class SudokuBenchmark {
         String[] files = {"./SudokuPuzzleGenerator/level1_easy.csv", "./SudokuPuzzleGenerator/level2_medium.csv", "./SudokuPuzzleGenerator/level3_hard.csv"};
         
         SudokuSolverBench solver = new SudokuSolverBench();
-        PrintWriter out = new PrintWriter(new FileWriter("benchmark_results.csv"));
+        //PrintWriter out = new PrintWriter(new FileWriter("benchmark_results.csv"));
+        PrintWriter out = new PrintWriter(new FileWriter("benchmark_results_NoJIT.csv"));
+
         out.println("puzzle_id,difficulty,algorithm,run,time_ns,nodes");
         
         int puzzleId = 0;
