@@ -33,7 +33,6 @@ venv/
 # *.csv
 
 # Bilder genererade av measure.py (kan ignoreras eller committas)
-*.png
 *.pdf
 
 # macOS
