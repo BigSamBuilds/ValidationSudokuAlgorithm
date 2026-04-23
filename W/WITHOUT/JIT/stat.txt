@@ -1,0 +1,17 @@
+====================
+Algorithm: dfs
+Mean: 66583202.17 ns
+====================
+
+====================
+Algorithm: cp
+Mean: 9037841799.58 ns
+====================
+c:\Users\Tonny\OneDrive\Dokument\SudokuValidationUtvardering\ValidationSudokuAlgorithm\AlgoComparion.py:59: MatplotlibDeprecationWarning: The 'labels' parameter of boxplot() has been renamed 'tick_labels' since Matplotlib 3.9; support for the old name will be dropped in 3.11.
+  plt.boxplot(all_results.values(), labels=all_results.keys())
+
+T-test:
+dfs vs cp
+t-stat: -3430.2379687000666
+p-value: 8.509134777769278e-54
+Significant difference
