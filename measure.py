@@ -289,10 +289,10 @@ for diff, filepath in PUZZLE_FILES.items():
     plot_puzzle_structure(filepath, diff, f'{puzzle_plot_dir}/puzzle_structure_{diff}.png')
 
 # ============================================================
-# STATISTICAL SUMMARY (unchanged, uses steady‑state runs 5‑9)
+# STATISTICAL SUMMARY (including nodes)
 # ============================================================
 print("\n" + "=" * 60)
-print("STATISTICAL SUMMARY")
+print("STATISTICAL SUMMARY (steady‑state runs 5–9)")
 print("=" * 60)
 
 df_steady = df_all[df_all['run'] > WARMUP_END]
@@ -303,10 +303,23 @@ for jit_val, jit_label in [('on', 'JIT ON'), ('off', 'JIT OFF')]:
     sub = means[means['jit'] == jit_val]
     for diff in ['easy', 'medium', 'hard']:
         sub_diff = sub[sub['difficulty'] == diff]
-        pivot = sub_diff.pivot(index='puzzle_id', columns='algorithm', values='time_ns')
-        t_stat, p_val = stats.ttest_rel(pivot['dfs'], pivot['cp'])
-        print(f"  {diff}: n={len(pivot)}, DFS median={pivot['dfs'].median()/1e6:.3f} ms, "
-              f"CP median={pivot['cp'].median()/1e6:.3f} ms, t={t_stat:.2f}, p={p_val:.2e}")
+        pivot_time = sub_diff.pivot(index='puzzle_id', columns='algorithm', values='time_ns')
+        pivot_nodes = sub_diff.pivot(index='puzzle_id', columns='algorithm', values='nodes')
+        
+        # Time statistics
+        t_stat, p_val = stats.ttest_rel(pivot_time['dfs'], pivot_time['cp'])
+        print(f"  {diff}: n={len(pivot_time)}")
+        print(f"    Time  – DFS median: {pivot_time['dfs'].median()/1e6:.3f} ms, "
+              f"CP median: {pivot_time['cp'].median()/1e6:.3f} ms, "
+              f"t={t_stat:.2f}, p={p_val:.2e}")
+        
+        # Node statistics
+        dfs_nodes_median = pivot_nodes['dfs'].median()
+        cp_nodes_median  = pivot_nodes['cp'].median()
+        reduction = dfs_nodes_median / cp_nodes_median if cp_nodes_median > 0 else float('nan')
+        print(f"    Nodes – DFS median: {dfs_nodes_median:.0f}, "
+              f"CP median: {cp_nodes_median:.0f}, "
+              f"reduction factor: {reduction:.1f}×")
 
 print("\n" + "=" * 60)
 print("All plots generated successfully!")
